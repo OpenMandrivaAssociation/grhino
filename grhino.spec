@@ -10,7 +10,6 @@ Group:		Games/Boards
 URL:		http://rhino.sourceforge.net/
 Source:		http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		grhino-0.13.0-destdir.patch.bz2
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	scrollkeeper
 Requires(post,postun):		scrollkeeper
