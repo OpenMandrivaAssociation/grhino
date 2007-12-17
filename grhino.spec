@@ -35,16 +35,16 @@ the highest difficulty level.
 rm -rf %{buildroot}
 %makeinstall_std
 
-mkdir -p %{buildroot}%{_menudir}
-cat << _EOF_ > %{buildroot}%{_menudir}/%{name}
-?package(%{name}): \
- command="%{_gamesbindir}/%{name}" \
- icon="strategy_section.png" \
- longtitle="Othello/Reversi chess with strong AI" \
- needs="x11" \
- section="More Applications/Games/Boards" \
- title="GRhino"
-_EOF_
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Exec=%{_gamesbindir}/%{name} 
+Icon=strategy_section 
+Comment=Othello/Reversi chess with strong AI 
+Categories=BoardGame; 
+Name=GRhino
+EOF
 
 # move omf file to correct location
 mkdir -p %{buildroot}%{_datadir}/omf/%{name}
@@ -69,7 +69,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc README
 %{_gamesbindir}/*
-%{_menudir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
 %{_datadir}/%{name}-%{version}
 %{_datadir}/omf/*
 
