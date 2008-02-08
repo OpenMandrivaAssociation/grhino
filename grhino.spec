@@ -1,15 +1,14 @@
-%define version 0.15.0
+%define version 0.16.0
 %define release %mkrel 1
 
 Summary:	An Othello/Reversi chess with strong AI
 Name:		grhino
 Version:	%{version}
 Release:	%{release}
-License:	GPL
+License:	GPLv2+
 Group:		Games/Boards
 URL:		http://rhino.sourceforge.net/
-Source:		http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-Patch0:		grhino-0.13.0-destdir.patch.bz2
+Source:		http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	scrollkeeper
@@ -25,12 +24,10 @@ the highest difficulty level.
 
 %prep
 %setup -q
-%patch0 -p1 -b .destdir
 
 %build
 %configure2_5x --bindir=%{_gamesbindir}
 %make
-
 
 %install
 rm -rf %{buildroot}
@@ -41,26 +38,21 @@ cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
 Exec=%{_gamesbindir}/%{name} 
-Icon=strategy_section 
+Icon=%name 
 Comment=Othello/Reversi chess with strong AI 
-Categories=BoardGame; 
+Categories=BoardGame;Game;GTK;GNOME; 
 Name=GRhino
 EOF
 
-# move omf file to correct location
-mkdir -p %{buildroot}%{_datadir}/omf/%{name}
-mv %{buildroot}%{_datadir}/gnome/help/%{name}/C/*.omf %{buildroot}%{_datadir}/omf/%{name}/
-
 %find_lang %{name} --with-gnome --all-name
-
 
 %post
 %update_menus
-if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
+%update_scrollkeeper
 
 %postun
 %clean_menus
-if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
+%clean_scrollkeeper
 
 %clean
 rm -rf %{buildroot}
@@ -72,5 +64,5 @@ rm -rf %{buildroot}
 %{_gamesbindir}/*
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_datadir}/%{name}-%{version}
+%{_datadir}/pixmaps/*.png
 %{_datadir}/omf/*
-
