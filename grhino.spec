@@ -1,5 +1,5 @@
 %define version 0.16.0
-%define release %mkrel 4
+%define release %mkrel 5
 
 Summary:	An Othello/Reversi chess with strong AI
 Name:		grhino
@@ -9,6 +9,8 @@ License:	GPLv2+
 Group:		Games/Boards
 URL:		http://rhino.sourceforge.net/
 Source:		http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch0:		grhino-0.16.0-gcc43.patch
+Patch1:		grhino-0.16.0-mdv-fix-str-fmt.patch
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	scrollkeeper
@@ -24,6 +26,8 @@ the highest difficulty level.
 
 %prep
 %setup -q
+%patch0 -p0
+%patch1 -p1 -b .strfmt
 
 %build
 %configure2_5x --bindir=%{_gamesbindir}
