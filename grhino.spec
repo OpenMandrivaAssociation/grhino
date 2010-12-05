@@ -1,5 +1,5 @@
 %define version 0.16.0
-%define release %mkrel 5
+%define release %mkrel 6
 
 Summary:	An Othello/Reversi chess with strong AI
 Name:		grhino
