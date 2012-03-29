@@ -53,5 +53,7 @@ EOF
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}-%{version}
 %{_datadir}/pixmaps/*.png
+%if %{mdvver} < 201200
 %{_datadir}/omf/*
+%endif
 
