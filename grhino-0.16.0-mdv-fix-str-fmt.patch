@@ -1,0 +1,12 @@
+diff -p -up grhino-0.16.0/gutil.cc.strfmt grhino-0.16.0/gutil.cc
+--- grhino-0.16.0/gutil.cc.strfmt	2009-12-16 02:27:07.000000000 +0100
++++ grhino-0.16.0/gutil.cc	2009-12-16 02:27:48.000000000 +0100
+@@ -27,7 +27,7 @@ void error_message_box(const gtstream &b
+ {
+ 	GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
+ 						   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
+-						   bufstr.str().c_str());
++						   "%s", bufstr.str().c_str());
+ 	gtk_dialog_run(GTK_DIALOG(dialog));
+ 	gtk_widget_destroy(dialog);
+ }
