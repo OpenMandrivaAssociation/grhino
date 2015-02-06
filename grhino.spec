@@ -1,6 +1,6 @@
 Name:		grhino
 Version:	0.16.1
-Release:	%mkrel 1
+Release:	2
 Summary:	An Othello/Reversi chess with strong AI
 License:	GPLv2+
 Group:		Games/Boards
