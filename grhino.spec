@@ -4,7 +4,7 @@ Release:	2
 Summary:	An Othello/Reversi chess with strong AI
 License:	GPLv2+
 Group:		Games/Boards
-URL:		http://rhino.sourceforge.net/
+URL:		https://rhino.sourceforge.net/
 Source:		http://downloads.sourceforge.net/rhino/%{name}-%{version}.tar.gz
 Patch0:		grhino-0.16.0-gcc43.patch
 Patch1:		grhino-0.16.0-mdv-fix-str-fmt.patch
